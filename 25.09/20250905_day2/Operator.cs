@@ -83,6 +83,17 @@ namespace _20250905_day2
             //과제
             //1.데이터타입 종류 정리
             //2.연산자 종류 확인, 두 수의 입력을받아 연산해보기
+
+
+            int currentYear = 2025
+            Console.WriteLine("태어난 년도 기입");
+            int birthYear = int.Parse(Console.ReadLine());
+            int age;
+
+            age = currentYear - birthYear;
+            Console.WriteLine($"당신의 나이는 : {age}");
+
+
         }
 
     }

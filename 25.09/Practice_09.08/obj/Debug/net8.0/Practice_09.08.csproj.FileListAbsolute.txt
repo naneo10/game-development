@@ -1,0 +1,15 @@
+C:\2\w\25.09\Practice_09.08\obj\Debug\net8.0\Practice_09.08.GeneratedMSBuildEditorConfig.editorconfig
+C:\2\w\25.09\Practice_09.08\obj\Debug\net8.0\Practice_09.08.AssemblyInfoInputs.cache
+C:\2\w\25.09\Practice_09.08\obj\Debug\net8.0\Practice_09.08.AssemblyInfo.cs
+C:\2\w\25.09\Practice_09.08\obj\Debug\net8.0\Practice_09.08.csproj.CoreCompileInputs.cache
+C:\2\w\25.09\Practice_09.08\obj\Debug\net8.0\Practice_09.08.sourcelink.json
+C:\2\w\25.09\Practice_09.08\bin\Debug\net8.0\Practice_09.08.exe
+C:\2\w\25.09\Practice_09.08\bin\Debug\net8.0\Practice_09.08.deps.json
+C:\2\w\25.09\Practice_09.08\bin\Debug\net8.0\Practice_09.08.runtimeconfig.json
+C:\2\w\25.09\Practice_09.08\bin\Debug\net8.0\Practice_09.08.dll
+C:\2\w\25.09\Practice_09.08\bin\Debug\net8.0\Practice_09.08.pdb
+C:\2\w\25.09\Practice_09.08\obj\Debug\net8.0\Practice_09.08.dll
+C:\2\w\25.09\Practice_09.08\obj\Debug\net8.0\refint\Practice_09.08.dll
+C:\2\w\25.09\Practice_09.08\obj\Debug\net8.0\Practice_09.08.pdb
+C:\2\w\25.09\Practice_09.08\obj\Debug\net8.0\Practice_09.08.genruntimeconfig.cache
+C:\2\w\25.09\Practice_09.08\obj\Debug\net8.0\ref\Practice_09.08.dll
