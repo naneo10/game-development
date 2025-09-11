@@ -20,38 +20,35 @@ namespace assignment_25._09._08
     {
         static void Main ()
         {
-            for (int i = 0; i < 6; i++)
-            {
-                Console.WriteLine("시험점수를 입력하세요. (0 ~ 100)");
-                int testScore = int.Parse(Console.ReadLine());
+            Console.WriteLine("시험점수를 입력하세요. (0 ~ 100)");
+            int testScore = int.Parse(Console.ReadLine());
 
-                if (testScore >= 0 && testScore <= 100)
+            if (testScore >= 0 && testScore <= 100)
+            {
+                if (testScore >= 90)
                 {
-                    if (testScore >= 90)
-                    {
-                        Console.WriteLine("A 등급");
-                    }
-                    else if (testScore >= 80) 
-                    {
-                        Console.WriteLine("B 등급");
-                    }
-                    else if (testScore >= 70)
-                    {
-                        Console.WriteLine("C 등급");
-                    }
-                    else if (testScore >= 60)
-                    {
-                        Console.WriteLine("D 등급");
-                    }
-                    else
-                    {
-                        Console.WriteLine("F 등급");
-                    }
+                    Console.WriteLine("A 등급");
                 }
-                else 
+                else if (testScore >= 80) 
                 {
-                    Console.WriteLine("점수를 잘못 기입하셨습니다.");
+                    Console.WriteLine("B 등급");
                 }
+                else if (testScore >= 70)
+                {
+                    Console.WriteLine("C 등급");
+                }
+                else if (testScore >= 60)
+                {
+                    Console.WriteLine("D 등급");
+                }
+                else
+                {
+                    Console.WriteLine("F 등급");
+                }
+            }
+            else 
+            {
+                Console.WriteLine("점수를 잘못 기입하셨습니다.");
             }
         }
     }

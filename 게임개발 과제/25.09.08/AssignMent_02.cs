@@ -1,4 +1,6 @@
 ﻿
+using System.Reflection.Metadata.Ecma335;
+
 namespace assignment_25._09._08
 {
     /*
@@ -18,60 +20,56 @@ namespace assignment_25._09._08
     {
         static void Main ()
         {
-            for (int i = 0; i < 6; i++)
+            Console.WriteLine("나이를 입력하세요.");
+            int age = int.Parse(Console.ReadLine());
+
+            if (age >= 0 && age <= 70)
             {
-                Console.WriteLine("나이를 입력하세요.");
-                int age = int.Parse(Console.ReadLine());
-
-                if (age >= 0 && age <= 70)
+                if (age < 13)
                 {
-                    if (age < 13)
-                    {
-                        Console.WriteLine("요금은 5.000원 입니다.");
-                    }
-                    else if (age >= 13 && age <= 19)
-                    {
-                        Console.WriteLine("학생입니까? (Y/N)");
-                        string student = Console.ReadLine();
+                    Console.WriteLine("요금은 5.000원 입니다.");
+                }
+                else if (age >= 13 && age <= 19)
+                {
+                    Console.WriteLine("학생입니까? (Y/N)");
+                    string student = Console.ReadLine();
 
-                        if (student == "Y" || student == "y")
-                        {
-                            Console.WriteLine("요금은 7,000원 입니다.");
-                        }
-                        else if (student == "N" || student == "n")
-                        {
-                            Console.WriteLine("요금은 8,000원 입니다.");
-                        }
-                        else
-                        {
-                            Console.WriteLine("잘못 입력하셨습니다.");
-                        }
+                    if (student == "Y" || student == "y")
+                    {
+                        Console.WriteLine("요금은 7,000원 입니다.");
+                    }
+                    else if (student == "N" || student == "n")
+                    {
+                        Console.WriteLine("요금은 8,000원 입니다.");
                     }
                     else
                     {
-                        Console.WriteLine("학생입니까? (Y/N)");
-                        string student = Console.ReadLine();
-
-                        if (student == "Y" || student == "y")
-                        {
-                            Console.WriteLine("요금은 9,000원 입니다.");
-                        }
-                        else if (student == "N" || student == "n")
-                        {
-                            Console.WriteLine("요금은 10,000원 입니다.");
-                        }
-                        else
-                        {
-                            Console.WriteLine("잘못 입력하셨습니다.");
-                        }
+                        Console.WriteLine("잘못 입력하셨습니다.");
                     }
                 }
                 else
                 {
-                    Console.WriteLine("무료 입장 가능합니다.");
+                    Console.WriteLine("학생입니까? (Y/N)");
+                    string student = Console.ReadLine();
+
+                    if (student == "Y" || student == "y")
+                    {
+                        Console.WriteLine("요금은 9,000원 입니다.");
+                    }
+                    else if (student == "N" || student == "n")
+                    {
+                        Console.WriteLine("요금은 10,000원 입니다.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("잘못 입력하셨습니다.");
+                    }
                 }
             }
-
+            else
+            {
+                Console.WriteLine("무료 입장 가능합니다.");
+            }
         }
     }
 }
