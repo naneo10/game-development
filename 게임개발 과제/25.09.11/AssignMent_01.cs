@@ -59,96 +59,277 @@ namespace _25._09._11
 
     internal class AssignMent_01
     {
-        //컴퓨터 숫자 생성 메서드
-        //^배열일 경우 타입명 뒤에 '[]'을 꼭 붙여야 한다.
-        static int[] Computer ()
+        static void Main()
         {
-            //배열 생성
-            int[] comNumber = new int[9];
+            //총 합 변수
+            int totalStrikeCount = 0;
+            int totalBallCount = 0;
+            int totalRounds = 0;
 
-            //0~9까지의 숫자 입력
-            for (int i = 0; i < comNumber.Length; i++)
+            //종료 조건
+            int endStrikeCount = 0;
+            int endOutCount = 0;
+
+            do
             {
-                comNumber[i] = i + 1;
-            }
+                totalRounds++;
+                Console.WriteLine($"[ {totalRounds}회차 경기 시작 ]");
+                //각 라운드 판정 결과합 변수생성
+                int strikeCount = 0;
+                int outCount = 0;
+                int ballCount = 0;
 
-            //셔플로 배열을 무작위로 섞음
-            Random randNumb = new Random();
-            for (int i = comNumber.Length - 1; i > 0; i--)
-            {
-                int j = randNumb.Next(i + 1); //^i에 +1을 하는 이유는?
-                int temp = comNumber[i];
-                comNumber[i] = comNumber[j];
-                comNumber[j] = temp;
-            }
+                //컴퓨터 배열 생성
+                int[] comNumber = new int[9];
 
-            //무작위 값을 출력
-            for (int i = 0; i < comNumber.Length; i++)
-            {
-                Console.WriteLine("computer 무작위 값 출력 : ");
-                Console.WriteLine(comNumber[i]);
-            }
+                //0~9까지의 숫자 입력
+                for (int i = 0; i < comNumber.Length; i++)
+                {
+                    comNumber[i] = i + 1;
+                }
 
-            return comNumber;
-        }
+                //셔플로 배열을 무작위로 섞음
+                Random randNumb = new Random();
+                for (int i = comNumber.Length - 1; i > 0; i--)
+                {
+                    int j = randNumb.Next(i + 1); //^i에 +1을 하는 이유는?
+                    int temp = comNumber[i];
+                    comNumber[i] = comNumber[j];
+                    comNumber[j] = temp;
+                }
 
-        static int[] User ()
-        {
-            //유저 배열 생성
-            int[] userNumb = new int[3]; //값 3개를 입력 받는데 3개 이상으로 해버리면 0 중복 값으로 처리됨
-
-            do //중복된 수 기입 시 반복
-            {
-                //0~9 사이의 정수를 3개 입력받음
+                //무작위 값을 출력
+                Console.Write("computer 랜덤 값 : ");
                 for (int i = 0; i < 3; i++)
                 {
-                    int convertedNumb; //변환된 정수를 저장할 변수
-                    bool isSuccess; //변환 성공 여부를 저장할 변수
+                    Console.Write(comNumber[i] + $" ");
+                }
+                Console.WriteLine();
 
-                    bool call = userNumb.Count() != userNumb.Distinct().Count();
+                //유저 배열 생성
+                int[] userNumb = new int[3]; //값 3개를 입력 받는데 3개 이상으로 해버리면 0 중복 값으로 처리됨
 
-                    do //해당 조건을 충족할 때 까지 반복
-                    {
-                        Console.Write($"[{i + 1}번째] 0~9 사이의 정수를 3개 입력하세요. : ");
-                        string inputNumb = Console.ReadLine(); //문자열까지 잡아내기 위해 string 타입으로
-
-                        isSuccess = int.TryParse(inputNumb, out convertedNumb); //소수점과 문자를 확인하는 식
-                        //중복 값을 확인하는 식
-
-                        if (convertedNumb < 0 || convertedNumb > 9)
-                        {
-                            //유효 숫자를 벗어났을 경우
-                            Console.WriteLine("범위에서 벗어난 수 입니다. 다시 입력해주세요.");
-                        }
-                        else if (!isSuccess)
-                        {
-                            //정수가 아닌 실수, 문자열을 입력했을 경우
-                            Console.WriteLine("소수점과 문자열을 사용할 수 없습니다. 다시 입력해주세요.");
-                        }
-
-                        userNumb[i] = convertedNumb; // 반복구문 밖에서 필요한 변수이기에 작성
-                    }
-                    while (userNumb[i] < 0 || userNumb[i] > 9 || !isSuccess);
-                    Console.WriteLine($"선택한 수는 : {userNumb[i]}");
-                }//for
-
-                if (userNumb.Count() != userNumb.Distinct().Count())
+                do //중복된 수 기입 시 반복
                 {
-                    Console.WriteLine("숫자를 중복 입력하지 마시오");
+                    //0~9 사이의 정수를 3개 입력받음
+                    for (int i = 0; i < 3; i++)
+                    {
+                        int convertedNumb; //변환된 정수를 저장할 변수
+                        bool isSuccess; //변환 성공 여부를 저장할 변수
+
+                        bool call = userNumb.Count() != userNumb.Distinct().Count();
+
+                        do //해당 조건을 충족할 때 까지 반복
+                        {
+                            Console.Write($"[{i + 1}번째] 0~9 사이의 정수를 3개 입력하세요. : ");
+                            string inputNumb = Console.ReadLine(); //문자열까지 잡아내기 위해 string 타입으로
+
+                            isSuccess = int.TryParse(inputNumb, out convertedNumb); //소수점과 문자를 확인하는 식
+                            //중복 값을 확인하는 식
+
+                            if (convertedNumb < 0 || convertedNumb > 9)
+                            {
+                                //유효 숫자를 벗어났을 경우
+                                Console.WriteLine("범위에서 벗어난 수 입니다. 다시 입력해주세요.");
+                            }
+                            else if (!isSuccess)
+                            {
+                                //정수가 아닌 실수, 문자열을 입력했을 경우
+                                Console.WriteLine("소수점과 문자열을 사용할 수 없습니다. 다시 입력해주세요.");
+                            }
+
+                            userNumb[i] = convertedNumb; // 반복구문 밖에서 필요한 변수이기에 작성
+                        }
+                        while (userNumb[i] < 0 || userNumb[i] > 9 || !isSuccess);
+                    }//for
+
+                    if (userNumb.Count() != userNumb.Distinct().Count())
+                    {
+                        Console.WriteLine("숫자를 중복 입력하지 마시오");
+                        Console.WriteLine();
+                    }
+                }//do
+                while (userNumb.Count() != userNumb.Distinct().Count());
+
+                //컴퓨터, 유저 입력 값 할당
+                /*
+                int[][] jagged = new int[2][];
+                jagged[0] = new int[3] { comNumber[0], comNumber[1], comNumber[2] };
+                jagged[1] = new int[3] { userNumb[0], userNumb[1], userNumb[2] };
+                */ //실패
+
+                //1차원 배열로 시도 // 변수생성 및 값 할당
+                int[] comCount = new int[] { comNumber[0], comNumber[1], comNumber[2] };
+                int[] userCount = new int[] { userNumb[0], userNumb[1], userNumb[2] };
+
+                //컴퓨터 값, 유저 입력 값 할당
+                /*
+                int[,] comCount = new int[1, 3];
+                comCount[0, 0] = comNumber[0];
+                comCount[0, 1] = comNumber[1];
+                comCount[0, 2] = comNumber[2];
+
+                Console.WriteLine($"comCount 0, 2 : {comCount[0,2]}");
+
+                int[,] userCount = new int[1, 3];
+                userCount[0, 0] = userNumb[0];
+                userCount[0, 1] = userNumb[1];
+                userCount[0, 2] = userNumb[2];
+
+                Console.WriteLine($"userCount 0, 1 : {userCount[0,1]}");
+                */ //실패
+
+                //할당 값 확인
+                /*
+                Console.Write("comCount 할당 값 : ");
+                for (int i = 0; i < comCount.Length; i++)
+                {
+                    Console.Write(comCount[i] + " ");
+                }
+                Console.WriteLine();
+
+                Console.Write("userCount 할당 값 : ");
+                for (int i = 0; i < userCount.Length; i++)
+                {
+                    Console.Write(userCount[i] + " ");
+                }
+                Console.WriteLine();
+                */
+
+                /*
+                for (int r = 0; r < comCount.GetLength(0); r++)
+                {
+                    for (int c = 0; c < comCount.GetLength(1); c++)
+                    {
+                        Console.Write(comCount[r, c] + "\t");
+                    }
                     Console.WriteLine();
                 }
+                */ //한 줄 비교도 가능한가?
+
+
+                //3. 판정 규칙
+                //스트라이크 판정
+                /*
+                if (comCount[0, 0] == userCount[0, 0])
+                {
+                    strikeCount++;
+                    totalStrikeCount++;
+                }
+                if (comCount[0, 1] == userCount[0, 1])
+                {
+                    strikeCount++;
+                    totalStrikeCount++;
+                }
+                if (comCount[0, 2] == userCount[0, 2])
+                {
+                    strikeCount++;
+                    totalStrikeCount++;
+                }
+                */ //실패
+
+                if (comCount[0] == userCount[0])
+                {
+                    strikeCount++;
+                    totalStrikeCount++;
+                }
+                else if (comCount[0] == userCount[1] || comCount[0] == userCount[2])
+                {
+                    ballCount++;
+                    totalBallCount++;
+                }
+                else
+                {
+                    outCount++;
+                }
+
+                if (comCount[1] == userCount[1])
+                {
+                    strikeCount++;
+                    totalStrikeCount++;
+                }
+                else if (comCount[1] == userCount[0] || comCount[1] == userCount[2])
+                {
+                    ballCount++;
+                    totalBallCount++;
+                }
+                else
+                {
+                    outCount++;
+                }
+
+                if (comCount[2] == userCount[2])
+                {
+                    strikeCount++;
+                    totalStrikeCount++;
+                }
+                else if (comCount[2] == userCount[0] || comCount[2] == userCount[1])
+                {
+                    ballCount++;
+                    totalBallCount++;
+                }
+                else
+                {
+                    outCount++;
+                }
+
+                /*
+                //판정규칙 참조 : https://codechacha.com/ko/csharp-compare-arrays-for-equality/
+                bool StrikeResult = Enumerable.SequenceEqual(comCount, userCount);
+                Console.WriteLine($"스트라이크 판정 확인 : {StrikeResult}");
+                */ //실패
+
+                //볼 판정
+
+                //아웃 판정
+                /*
+                if (count[0, 0] != count[1, 0] || count[0, 0] != count[1, 1] || count[0, 0] != count[1, 2])
+                {
+                    outCount++;
+                    totalOutCount++;
+                }
+                if (count[0, 1] != count[1, 1] || count[0, 1] != count[1, 0] || count[0, 1] != count[1, 2])
+                {
+                    outCount++;
+                    totalOutCount++;
+                }
+                if (count[0, 2] != count[1, 2] || count[0, 2] != count[1, 0] || count[0, 2] != count[1, 1])
+                {
+                    outCount++;
+                    totalOutCount++;
+                }
+                */ //실패
+
+                Console.WriteLine($"{ballCount}볼 {strikeCount}스트라이크");
+                Console.WriteLine();
+
+                if (strikeCount > 2)
+                {
+                    endStrikeCount++;
+                    Console.WriteLine("삼진 아웃! 승리!");
+                }
+                if (outCount > 2)
+                {
+                    endOutCount++;
+                    Console.WriteLine($"아웃! 현재 아웃: {endOutCount}");
+                }
+
             }//do
-            while (userNumb.Count() != userNumb.Distinct().Count());
+            while (endStrikeCount == 0 && endOutCount < 3); // '||'가 or 이라서 하나라도 충족되면 끝아니었나? 왜 '&&'가 맞는거지??
 
-            return userNumb;
-        }
+            if (endOutCount > 2)
+            {
+                Console.WriteLine($"{endOutCount}아웃으로 게임 종료!");
+            }
 
-        static void Main ()
-        {
-            Computer();
-            User();
-        }
+            Console.WriteLine();
+            Console.WriteLine("============= 총 결산 =============");
+            Console.WriteLine($"토탈 라운드 횟수 : {totalRounds}");
+            Console.WriteLine($"토탈 스트라이크 횟수 : {totalStrikeCount}");
+            Console.WriteLine($"토탈 볼 횟수 : {totalBallCount}");
+            Console.WriteLine($"토탈 아웃 횟수 : {endOutCount}");
+            Console.WriteLine("===================================");
 
-        //문자열 비교식 참조 사이트: https://bugdict.tistory.com/69#google_vignette
+        }//main
     }
 }

@@ -51,7 +51,7 @@ namespace _25._09._11
 
             //count() 활용 //중복된 수 숫자 찾는거 아니라 폐기
             /*
-            int[] numbers = new int[15] { 1, 2, 2, 3, 3, 3, 2, 3, 4, 5, 6, 7, 8, 9, 11 };
+            int[] numbers = new int[15] { 1, 2, 2, 3, 3, 3, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
             int numCount = numbers.Count(n => n%2 == 0); //중복된 숫자 찾는거라더만 낚아버리네
             Console.WriteLine($"count 활용 (중복된 수 숫자) : {numCount}");
             */
