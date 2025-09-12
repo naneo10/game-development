@@ -35,11 +35,39 @@ namespace _25._09._12
     *체크
     -A는 무조건 1로 가정한다.
     */
+
+    /*
+    인덱스 범위 : https://blog.naver.com/yulian/223774028139
+    */
+
     internal class AssignMent_03
     {
         static void Main ()
         {
+            Random random = new Random();
 
+            //0~51까지의 정수를 담을 배열 생성
+            int[] playCard = new int[52];
+
+            //카드 할당
+            for (int i = 0; i < playCard.Length; i++)
+            {
+                playCard[i] = i;
+                Console.WriteLine(playCard[i]);
+            }
+            for (int i = playCard.Length - 1; i > 0; i--)
+            {
+                int j = random.Next(i + 1);
+                int temp = playCard[i];
+                playCard[i] = playCard[j];
+                playCard[j] = temp;
+            }
+
+            //임의의 두 인덱스가 될 네 인덱스
+            int[,] cardTypeNum = new int[4, 13];
+
+
+            //랜덤으로 인덱스 두 개를 선택하고 각 인덱스에 13개의 값을 할당한다?
         }
     }
 }
