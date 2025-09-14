@@ -1,5 +1,6 @@
 ﻿
-using System.Security.AccessControl;
+using System.Runtime.InteropServices.ComTypes;
+using System.Security.Cryptography.X509Certificates;
 
 namespace _25._09._12
 {
@@ -45,47 +46,164 @@ namespace _25._09._12
     /*
     LINQ : https://hijuworld.tistory.com/56
     List<> : https://coding-shop.tistory.com/130
-    카드추가 : https://stackoverflow.com/questions/61398404/how-do-i-add-a-deck-of-cards-to-an-array-in-c-sharp
     C# LINQ의 내부구조 및 장단점 : https://highcl.tistory.com/50
+    */
+
+    /*
+    카드추가 : https://stackoverflow.com/questions/61398404/how-do-i-add-a-deck-of-cards-to-an-array-in-c-sharp
+    ToList, ToArray 메서드 : https://developer-talk.tistory.com/655
+    IEnumerable 인터페이스란? : https://developer-talk.tistory.com/345
+    원하는 갯수만 추출 : https://chashtag.tistory.com/entry/C-List-%EC%9B%90%ED%95%98%EB%8A%94-%EA%B0%9C%EC%88%98%EB%A7%8C-%EC%96%BB%EA%B8%B0-Take-Skip
     */
 
     public class Card
     {
-        public string Name { get; set; }
+        //get, set : https://jeongkyun-it.tistory.com/23
         public string Type { get; set; }
-        public int Value { get; set; }
-    };
+        public string Numb { get; set; }
 
-    internal class AssignMent_03
-    {
-        enum Cards
+        public int CompareValue
         {
-             A = 1, Two = 2, Three = 3, Four = 4, Five = 5, Six = 6, Seven = 7, Eight = 8, Nine = 9, Ten = 10, J = 11, Q = 12, K = 13
-        }
-        static void Main()
-        {
-            var cardTypes = new List<string>()
+            // property get, set : https://developer-talk.tistory.com/39
+            get
             {
-                "♠", "◆", "♥", "♣"
-            };
-
-            List<Card> deck = new List<Card>();
-
-            var cardsValues = Enum.GetValues(typeof(Cards));
-            for (int c = 0; c < cardsValues.Length; c++)
-            {
-                foreach (var cardType in cardTypes)
+                switch (Numb)
                 {
-                    deck.Add(new Card
-                    {
-                        Name = Enum.GetName(typeof(Cards), c),
-                        Type = cardType,
-                        //Value = cardsValues[c]
-                    });
+                    case "A":
+                        return 1;
+                    case "J":
+                        return 11;
+                    case "Q":
+                        return 12;
+                    case "K":
+                        return 13;
+                    default:
+                        return int.Parse(Numb);
                 }
             }
-
         }
+    }
+    public class AssignMent_03
+    {
+        static void Main()
+        {
+            string[] types = { "♠", "♥", "♣", "◆" };
+            string[] numbs = { "A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K" };
+
+            List<Card> deck = (from t in types
+                               from n in numbs
+                               select new Card { Type = t, Numb = n }).ToList();
+
+            int useCard = 0;
+
+            int money = 10000;
+            int betting = 0;
+
+            /*
+            foreach (var check in deck)
+            {
+                Console.WriteLine($"타입 : {check.Type}, 넘버 : {check.Numb} ");
+            }
+            */
+
+            Random rand = new Random();
+            int Round = 0;
+
+            do
+            {
+                Round++;
+
+                Console.WriteLine($"=======현재 {Round}라운드=======");
+
+                //타입 3개 랜덤으로 뽑기
+                var chosenType = types.OrderBy(a => rand.Next()).Take(3).ToList();
+                //띄어쓰기 : https://shanael.tistory.com/64
+                //"," : https://learn.microsoft.com/ko-kr/dotnet/api/system.string.join?view=net-8.0
+                /*
+                Console.WriteLine("Type: " + string.Join(", ", chosenType));
+                */
+
+                //Contains의 true인 카드만 남기기
+                var playDeck = deck.Where(a => chosenType.Contains(a.Type)).ToList();
+
+                //랜덤 3장 뽑기
+                playDeck = playDeck.OrderBy(a => rand.Next()).ToList();
+                var drawn = playDeck.Take(3).ToList();
+
+                foreach (var draw in drawn)
+                {
+                    Console.Write("타입: " + string.Join(", ", draw.Type) + " " + string.Join(", ", draw.Numb) + " / ");
+                }
+                Console.WriteLine();
+
+                //배팅
+                do
+                {
+                    //현재 보유금
+                    Console.WriteLine($"현재 보유금액 {money}원");
+                    Console.WriteLine("배팅 금액을 입력하시오.");
+                    string inputCount = Console.ReadLine();
+
+                    int value;
+                    bool isSuccess = int.TryParse(inputCount, out value);
+
+                    if (!isSuccess)
+                    {
+                        Console.WriteLine("정수를 입력하시오");
+                    }
+                    else if (value < 1000 || value > money)
+                    {
+                        Console.WriteLine("최소 배팅금액은 1,000이며, 소지금 초과 배팅은 불가하다.");
+                    }
+                    else
+                    {
+                        betting = value;
+                        break;
+                    }
+                }
+                while (true);
+
+                Console.WriteLine();
+
+                //배팅규칙
+
+                //룰
+                if (drawn[0].CompareValue < drawn[2].CompareValue && drawn[2].CompareValue < drawn[1].CompareValue)
+                {
+                    money += betting;
+                    Console.WriteLine($"{betting}원을 획득했다");
+                }
+                else if (drawn[0].CompareValue > drawn[2].CompareValue && drawn[2].CompareValue > drawn[1].CompareValue)
+                {
+                    money += betting;
+                    Console.WriteLine($"{betting}원을 획득했다");
+                }
+                else
+                {
+                    money -= betting;
+                    Console.WriteLine($"{betting}원을 잃었다");
+                }
+
+
+                //사용한 카드 수 계산
+                useCard += drawn.Count();
+                Console.WriteLine($"현재 사용한 카드 수 : {useCard}");
+
+                //사용한 카드 삭제
+                deck.RemoveAll(a => drawn.Contains(a));
+                Console.WriteLine();
+            }
+            while (money >= 1000 && useCard <= 50);
+            Console.WriteLine("======= 게임 종료 =======");
+            if (money < 1000)
+            {
+                Console.WriteLine("소지금이 부족합니다.");
+            }
+            else
+            {
+                Console.WriteLine("카드를 모두 사용하였습니다.");
+            }
+        }//Main
     }
 
 }

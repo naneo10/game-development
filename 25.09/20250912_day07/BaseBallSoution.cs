@@ -29,7 +29,7 @@ namespace _20250912_day07
                 int[] myNumber = PlayerInput(DIGITCOUNT, MINNUMBER, MAXNUMBER);
 
                 int ballCount, strikeCount;
-                judgement(comNumber, myNumber, out ballCount, out strikeCount);
+                Judgement(comNumber, myNumber, out ballCount, out strikeCount);
             }
         }
         //배열 초기화
@@ -125,7 +125,7 @@ namespace _20250912_day07
         }
 
         //판정
-        static void judgement(int[] comNumber, int[] playerNumber, out int ball, out int strike)
+        static void Judgement(int[] comNumber, int[] playerNumber, out int ball, out int strike)
         {
             ball = 0;
             strike = 0;
