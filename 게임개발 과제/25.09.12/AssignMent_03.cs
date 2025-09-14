@@ -1,4 +1,6 @@
 ﻿
+using System.Security.AccessControl;
+
 namespace _25._09._12
 {
     /*
@@ -40,34 +42,50 @@ namespace _25._09._12
     인덱스 범위 : https://blog.naver.com/yulian/223774028139
     */
 
+    /*
+    LINQ : https://hijuworld.tistory.com/56
+    List<> : https://coding-shop.tistory.com/130
+    카드추가 : https://stackoverflow.com/questions/61398404/how-do-i-add-a-deck-of-cards-to-an-array-in-c-sharp
+    C# LINQ의 내부구조 및 장단점 : https://highcl.tistory.com/50
+    */
+
+    public class Card
+    {
+        public string Name { get; set; }
+        public string Type { get; set; }
+        public int Value { get; set; }
+    };
+
     internal class AssignMent_03
     {
-        static void Main ()
+        enum Cards
         {
-            Random random = new Random();
-
-            //0~51까지의 정수를 담을 배열 생성
-            int[] playCard = new int[52];
-
-            //카드 할당
-            for (int i = 0; i < playCard.Length; i++)
+             A = 1, Two = 2, Three = 3, Four = 4, Five = 5, Six = 6, Seven = 7, Eight = 8, Nine = 9, Ten = 10, J = 11, Q = 12, K = 13
+        }
+        static void Main()
+        {
+            var cardTypes = new List<string>()
             {
-                playCard[i] = i;
-                Console.WriteLine(playCard[i]);
-            }
-            for (int i = playCard.Length - 1; i > 0; i--)
+                "♠", "◆", "♥", "♣"
+            };
+
+            List<Card> deck = new List<Card>();
+
+            var cardsValues = Enum.GetValues(typeof(Cards));
+            for (int c = 0; c < cardsValues.Length; c++)
             {
-                int j = random.Next(i + 1);
-                int temp = playCard[i];
-                playCard[i] = playCard[j];
-                playCard[j] = temp;
+                foreach (var cardType in cardTypes)
+                {
+                    deck.Add(new Card
+                    {
+                        Name = Enum.GetName(typeof(Cards), c),
+                        Type = cardType,
+                        //Value = cardsValues[c]
+                    });
+                }
             }
 
-            //임의의 두 인덱스가 될 네 인덱스
-            int[,] cardTypeNum = new int[4, 13];
-
-
-            //랜덤으로 인덱스 두 개를 선택하고 각 인덱스에 13개의 값을 할당한다?
         }
     }
+
 }

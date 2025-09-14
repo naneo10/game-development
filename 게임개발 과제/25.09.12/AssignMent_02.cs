@@ -27,34 +27,102 @@ namespace _25._09._12
     /*
     구조체와 클레스의 차이 : https://usingsystem.tistory.com/6
     */
+    struct Student
+    {
+        public string name;
+        public int score;
+    }
 
     internal class AssignMent_02
     {
-        struct Student
+        static void Main()
         {
-            public string Name;
-            public int Score;
+            Student std;
+            Student std2;
 
-            public bool HighScore()
+            string testName;
+            string testNum;
+            bool test;
+
+            //1. 이름 확인
+            do
             {
-                Console.WriteLine($"점수가 더 높은 학생은 {} 입니다.");
+                Console.WriteLine("첫 번째 학생 이름 입력 : ");
+                testName = Console.ReadLine();
+                std.name = testName;
+
+                int num;
+                test = int.TryParse(testName, out num);
+
+                if (test)
+                {
+                    Console.WriteLine("문자열을 입력하시오");
+                }
             }
-        }
+            while (test);
 
-        static void Main ()
-        {
-            //첫 번째 학생 이름, 점수 입력
-            Console.WriteLine("첫 번째 학생 이름 입력 : ");
-            string inputName = Console.ReadLine();
-            Console.WriteLine("첫 번째 학생 점수 입력 : ");
-            int inputScore = int.Parse(Console.ReadLine());
+            //1.점수 확인
+            do
+            {
+                Console.WriteLine("첫 번째 학생 점수 입력 : ");
+                testNum = Console.ReadLine();
 
-            //입력 값 할당
-            Student Name = (Student)Enum.Parse(typeof(Student), inputName);
-            //Student Score = (Student)inputScore; //수정필요
+                test = int.TryParse(testNum, out std.score);
 
-            Console.WriteLine("두 번째 학생 이름 입력 : ");
-            Console.WriteLine("두 번째 학생 점수 입력 : ");
+                if (std.score < 0 || std.score > 100)
+                {
+                    Console.WriteLine("범위를 벗어난 숫자");
+                }
+                else if (!test)
+                {
+                    Console.WriteLine("숫자를 입력하시오");
+                }
+            }
+            while (!test || std.score < 0 || std.score > 100);
+
+            do
+            {
+                Console.WriteLine("두 번째 학생 이름 입력 : ");
+                testName = Console.ReadLine();
+                std2.name = testName;
+
+                int num;
+                test = int.TryParse(testName, out num);
+
+                if (test)
+                {
+                    Console.WriteLine("문자열을 입력하시오");
+                }
+            }
+            while (test);
+
+            //1.점수 확인
+            do
+            {
+                Console.WriteLine("두 번째 학생 점수 입력 : ");
+                testNum = Console.ReadLine();
+
+                test = int.TryParse(testNum, out std2.score);
+
+                if (std.score < 0 || std.score > 100)
+                {
+                    Console.WriteLine("범위를 벗어난 숫자");
+                }
+                else if (!test)
+                {
+                    Console.WriteLine("숫자를 입력하시오");
+                }
+            }
+            while (!test || std.score < 0 || std.score > 100);
+
+            if (std.score > std2.score)
+            {
+                Console.WriteLine($"점수가 더 높은 학생은 {std.name} 입니다.");
+            }
+            else
+            {
+                Console.WriteLine($"점수가 더 높은 학생은 {std2.name} 입니다.");
+            }
         }
     }
 }

@@ -125,7 +125,7 @@ namespace _20250912_day07
         }
 
         //판정
-        static void judgement(int[] comNumber, in[] playerNumber, out int ball, out int strike)
+        static void judgement(int[] comNumber, int[] playerNumber, out int ball, out int strike)
         {
             ball = 0;
             strike = 0;
@@ -134,7 +134,7 @@ namespace _20250912_day07
             {
                 for (int k = 0; k < playerNumber.Length; k++)
                 {
-                    if (comNumber[i] == comNumber[k])
+                    if (comNumber[i] == playerNumber[k])
                     {
                         if (i == k)
                         {

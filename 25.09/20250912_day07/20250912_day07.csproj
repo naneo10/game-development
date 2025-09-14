@@ -9,16 +9,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="BaseBallSoution.cs" />
     <Compile Remove="Day07_01.cs" />
     <Compile Remove="Day07_02.cs" />
+    <Compile Remove="Day07_03.cs" />
     <Compile Remove="Program.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="BaseBallSoution.cs" />
     <None Include="Day07_01.cs" />
     <None Include="Day07_02.cs" />
+    <None Include="Day07_03.cs" />
     <None Include="Program.cs" />
   </ItemGroup>
 
