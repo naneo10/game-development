@@ -9,16 +9,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Day08_01.cs" />
-    <Compile Remove="Day08_02.cs" />
-    <Compile Remove="Day08_03.cs" />
+    <Compile Remove="CAccessModifier.cs" />
+    <Compile Remove="CClass.cs" />
+    <Compile Remove="CProperty.cs" />
     <Compile Remove="Program.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Day08_01.cs" />
-    <None Include="Day08_02.cs" />
-    <None Include="Day08_03.cs" />
+    <None Include="CClass.cs" />
+    <None Include="CAccessModifier.cs" />
+    <None Include="CProperty.cs" />
     <None Include="Program.cs" />
   </ItemGroup>
 

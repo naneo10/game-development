@@ -100,7 +100,7 @@ namespace _20250915_day08
             Console.WriteLine(Score); //특정 메서드만 통해서 값을 변경 가능하다
         }
     }
-    internal class Day08_03
+    internal class CProperty
     {
         static void Main()
         {

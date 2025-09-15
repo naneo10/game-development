@@ -65,7 +65,7 @@ namespace _20250915_day08
         }
     }
     
-    internal class Day08_04
+    internal class CConstructor
     {
         static void Main ()
         {

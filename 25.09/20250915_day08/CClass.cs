@@ -60,7 +60,7 @@ namespace _20250915_day08
         public int value;
     }
 
-    internal class Day08_01
+    internal class CClass
     {
         static void Swap(ValueType left, ValueType right) //값 형식
         {

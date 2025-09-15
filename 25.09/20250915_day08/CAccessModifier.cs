@@ -67,7 +67,7 @@ namespace _20250915_day08
         }
     }
 
-    internal class Day08_02
+    internal class CAccessModifier
     {
         static void Main()
         {
