@@ -1,0 +1,15 @@
+C:\2\w\게임개발 과제\25.09.15\obj\Debug\net8.0\25.09.15.GeneratedMSBuildEditorConfig.editorconfig
+C:\2\w\게임개발 과제\25.09.15\obj\Debug\net8.0\25.09.15.AssemblyInfoInputs.cache
+C:\2\w\게임개발 과제\25.09.15\obj\Debug\net8.0\25.09.15.AssemblyInfo.cs
+C:\2\w\게임개발 과제\25.09.15\obj\Debug\net8.0\25.09.15.csproj.CoreCompileInputs.cache
+C:\2\w\게임개발 과제\25.09.15\obj\Debug\net8.0\25.09.15.sourcelink.json
+C:\2\w\게임개발 과제\25.09.15\bin\Debug\net8.0\25.09.15.exe
+C:\2\w\게임개발 과제\25.09.15\bin\Debug\net8.0\25.09.15.deps.json
+C:\2\w\게임개발 과제\25.09.15\bin\Debug\net8.0\25.09.15.runtimeconfig.json
+C:\2\w\게임개발 과제\25.09.15\bin\Debug\net8.0\25.09.15.dll
+C:\2\w\게임개발 과제\25.09.15\bin\Debug\net8.0\25.09.15.pdb
+C:\2\w\게임개발 과제\25.09.15\obj\Debug\net8.0\25.09.15.dll
+C:\2\w\게임개발 과제\25.09.15\obj\Debug\net8.0\refint\25.09.15.dll
+C:\2\w\게임개발 과제\25.09.15\obj\Debug\net8.0\25.09.15.pdb
+C:\2\w\게임개발 과제\25.09.15\obj\Debug\net8.0\25.09.15.genruntimeconfig.cache
+C:\2\w\게임개발 과제\25.09.15\obj\Debug\net8.0\ref\25.09.15.dll

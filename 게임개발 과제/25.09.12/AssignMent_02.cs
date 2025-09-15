@@ -80,7 +80,7 @@ namespace _25._09._12
             }
             while (!test || std.score < 0 || std.score > 100);
 
-            do
+            do//2.이름 확인
             {
                 Console.WriteLine("두 번째 학생 이름 입력 : ");
                 testName = Console.ReadLine();
@@ -96,7 +96,7 @@ namespace _25._09._12
             }
             while (test);
 
-            //1.점수 확인
+            //2.점수 확인
             do
             {
                 Console.WriteLine("두 번째 학생 점수 입력 : ");
@@ -118,6 +118,10 @@ namespace _25._09._12
             if (std.score > std2.score)
             {
                 Console.WriteLine($"점수가 더 높은 학생은 {std.name} 입니다.");
+            }
+            else if (std.score == std2.score)
+            {
+                Console.WriteLine($"두 학생의 점수가 동일합니다.");
             }
             else
             {

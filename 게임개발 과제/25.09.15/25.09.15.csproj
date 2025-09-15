@@ -8,4 +8,16 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="AssignMent_01.cs" />
+    <Compile Remove="AssingMent_02.cs" />
+    <Compile Remove="Program.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="AssignMent_01.cs" />
+    <None Include="AssingMent_02.cs" />
+    <None Include="Program.cs" />
+  </ItemGroup>
+
 </Project>
