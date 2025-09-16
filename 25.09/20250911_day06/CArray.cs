@@ -19,7 +19,7 @@ namespace _20250911_day06
     
     ^자료형[] 배열의 이름 = new 자료형[크기];
     */
-    internal class Day06_01
+    internal class CArray
     {
         static void Main()
         {

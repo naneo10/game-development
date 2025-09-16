@@ -11,7 +11,7 @@ namespace _20250911_day06
     -2차원 배열의 한 형태이긴 하지만 길이가 다르다
     -주로 데이터 길이가 일정하지 않은 경우
     */
-    internal class Day06_02
+    internal class CJaggedArray
     {
         static void Main()
         {

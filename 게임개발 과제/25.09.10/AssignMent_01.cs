@@ -10,7 +10,7 @@ namespace _25._09._10
         static void Main()
         {
             Console.WriteLine("C# 값 형식 종류");
-            Console.WriteLine("정수 형식: byte, sbyte, ushort, short, unit, int, ulong, long 등");
+            Console.WriteLine("정수 형식: byte, sbyte, ushort, short, uint, int, ulong, long 등");
             Console.WriteLine("부등 소수점 형식: float, double, decimal 등");
             Console.WriteLine("문자 형식: char");
             Console.WriteLine("부울 형식: bool");

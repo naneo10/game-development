@@ -75,7 +75,7 @@ namespace _20250912_day07
         public string[] name; //참조 형식
     }
 
-    internal class Day07_03
+    internal class CEnumStruct
     {
         enum Direction
         {

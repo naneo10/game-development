@@ -21,7 +21,7 @@ namespace _20250912_day07
     고전적 문제
     문자열 뒤집기
     */
-    internal class Day07_02
+    internal class CStringMethod
     {
         static void Main()
         {

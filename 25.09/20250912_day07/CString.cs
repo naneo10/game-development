@@ -7,7 +7,7 @@ namespace _20250912_day07
     -System.String 이라는 클래스로 구현되어 있음
     -한 번 생성된 문자열은 수정할 수 없음. 변경되는 것 처럼 보이지만 새로운 문자열을 생성하기 때문
     */
-    internal class Day07_01
+    internal class CString
     {
         static void Main ()
         {

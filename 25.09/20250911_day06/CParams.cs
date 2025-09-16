@@ -5,7 +5,7 @@ namespace _20250911_day06
     메서드를 만들어서 사용해야하는 이유
     가위바위보를 메서드를 써서 분류해볼 것 / 복습
     */
-    internal class Day06_03
+    internal class CParams
     {
         static void Main ()
         {

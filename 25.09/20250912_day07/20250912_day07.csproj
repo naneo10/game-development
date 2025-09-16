@@ -9,16 +9,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Day07_01.cs" />
-    <Compile Remove="Day07_02.cs" />
-    <Compile Remove="Day07_03.cs" />
+    <Compile Remove="CEnumStruct.cs" />
+    <Compile Remove="CString.cs" />
+    <Compile Remove="CStringMethod.cs" />
     <Compile Remove="Program.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Day07_01.cs" />
-    <None Include="Day07_02.cs" />
-    <None Include="Day07_03.cs" />
+    <None Include="CString.cs" />
+    <None Include="CStringMethod.cs" />
+    <None Include="CEnumStruct.cs" />
     <None Include="Program.cs" />
   </ItemGroup>
 

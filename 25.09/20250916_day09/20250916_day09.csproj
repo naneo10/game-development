@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>_20250916_day09</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="CCopyConstructor.cs" />
+    <Compile Remove="CInheritanceComposition.cs" />
+    <Compile Remove="CPolymorphism.cs" />
+    <Compile Remove="Program.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="CCopyConstructor.cs" />
+    <None Include="CInheritanceComposition.cs" />
+    <None Include="CPolymorphism.cs" />
+    <None Include="Program.cs" />
+  </ItemGroup>
+
+</Project>

@@ -9,14 +9,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Day06_02.cs" />
-    <Compile Remove="Day06_03.cs" />
+    <Compile Remove="CJaggedArray.cs" />
+    <Compile Remove="CParams.cs" />
     <Compile Remove="Program.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Day06_02.cs" />
-    <None Include="Day06_03.cs" />
+    <None Include="CJaggedArray.cs" />
+    <None Include="CParams.cs" />
     <None Include="Program.cs" />
   </ItemGroup>
 

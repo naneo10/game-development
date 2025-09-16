@@ -315,7 +315,7 @@ namespace _25._09._11
                 }
 
             }//do
-            while (endStrikeCount == 0 && endOutCount < 3); // '||'가 or 이라서 하나라도 충족되면 끝아니었나? 왜 '&&'가 맞는거지??
+            while (endStrikeCount == 0 && endOutCount < 3); // while 조건문에 값이 true면 do문 반복, false일 경우 do-while문 종료
 
             if (endOutCount > 2)
             {
