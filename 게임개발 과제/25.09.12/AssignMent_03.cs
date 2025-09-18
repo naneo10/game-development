@@ -129,11 +129,13 @@ namespace _25._09._12
                 //랜덤 3장 뽑기
                 playDeck = playDeck.OrderBy(a => rand.Next()).ToList();
                 var drawn = playDeck.Take(3).ToList();
+                var publicCard = drawn.Take(2).ToList();
 
-                foreach (var draw in drawn)
+                foreach (var draw in publicCard)
                 {
                     Console.Write("타입: " + string.Join(", ", draw.Type) + " " + string.Join(", ", draw.Numb) + " / ");
                 }
+                Console.WriteLine("? ? ?(배팅카드)");
                 Console.WriteLine();
 
                 //배팅

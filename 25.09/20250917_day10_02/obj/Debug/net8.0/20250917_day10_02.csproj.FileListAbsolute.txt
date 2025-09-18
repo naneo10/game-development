@@ -1,0 +1,15 @@
+C:\2\w\25.09\20250917_day10_02\bin\Debug\net8.0\20250917_day10_02.exe
+C:\2\w\25.09\20250917_day10_02\bin\Debug\net8.0\20250917_day10_02.deps.json
+C:\2\w\25.09\20250917_day10_02\bin\Debug\net8.0\20250917_day10_02.runtimeconfig.json
+C:\2\w\25.09\20250917_day10_02\bin\Debug\net8.0\20250917_day10_02.dll
+C:\2\w\25.09\20250917_day10_02\bin\Debug\net8.0\20250917_day10_02.pdb
+C:\2\w\25.09\20250917_day10_02\obj\Debug\net8.0\20250917_day10_02.GeneratedMSBuildEditorConfig.editorconfig
+C:\2\w\25.09\20250917_day10_02\obj\Debug\net8.0\20250917_day10_02.AssemblyInfoInputs.cache
+C:\2\w\25.09\20250917_day10_02\obj\Debug\net8.0\20250917_day10_02.AssemblyInfo.cs
+C:\2\w\25.09\20250917_day10_02\obj\Debug\net8.0\20250917_day10_02.csproj.CoreCompileInputs.cache
+C:\2\w\25.09\20250917_day10_02\obj\Debug\net8.0\20250917_day10_02.sourcelink.json
+C:\2\w\25.09\20250917_day10_02\obj\Debug\net8.0\20250917_day10_02.dll
+C:\2\w\25.09\20250917_day10_02\obj\Debug\net8.0\refint\20250917_day10_02.dll
+C:\2\w\25.09\20250917_day10_02\obj\Debug\net8.0\20250917_day10_02.pdb
+C:\2\w\25.09\20250917_day10_02\obj\Debug\net8.0\20250917_day10_02.genruntimeconfig.cache
+C:\2\w\25.09\20250917_day10_02\obj\Debug\net8.0\ref\20250917_day10_02.dll

@@ -90,49 +90,49 @@ namespace _25._09._16
     -다형성을 구현하는 예시로는 상속/구현 상황에서 메서드 오버라이딩/오버로딩이 있다
     */
 
-    //class Transportation
-    //{
-    //    protected int people;
-    //    protected int freight;
-    //    protected int totalCount;
+    class Transportation
+    {
+        protected int people;
+        protected int freight;
+        protected int totalCount;
 
-    //    public Transportation(int people, int freight, int totalCount)
-    //    {
-    //        this.people = people;
-    //        this.freight = freight;
-    //        this.totalCount = totalCount;
-    //    }
+        public Transportation(int people, int freight, int totalCount)
+        {
+            this.people = people;
+            this.freight = freight;
+            this.totalCount = totalCount;
+        }
 
-    //    public virtual void CurrentStatus()
-    //    {
-    //        Console.WriteLine($"현재 {people}명, {freight}개");
-    //    }
+        public virtual void CurrentStatus()
+        {
+            Console.WriteLine($"현재 {people}명, {freight}개");
+        }
 
-    //    public virtual void CurrentStatus(int totalCount)
-    //    {
-    //        this.totalCount = totalCount;
-    //        Console.WriteLine($"현재 {people}명, {freight}개");
-    //    }
-    //}
+        public virtual void CurrentStatus(int totalCount)
+        {
+            this.totalCount = totalCount;
+            Console.WriteLine($"현재 {people}명, {freight}개");
+        }
+    }
 
-    //class Ship : Transportation
-    //{
-    //    private int missCount;
-    //    public Ship(int totalCount) : base(15, 38, totalCount)
-    //    {
-    //        missCount = 0;
-    //    }
-    //    public override void CurrentStatus()
-    //    {
-    //        base.CurrentStatus();
-    //        Console.WriteLine($"TotalShipCount: {totalCount}");
-    //    }
-    //    public override void CurrentStatus(int missCount)
-    //    {
-    //        base.CurrentStatus();
-    //        Console.WriteLine($"TotalShipCount: {totalCount}, MissCount: {missCount}");
-    //    }
-    //}
+    class Ship : Transportation
+    {
+        private int missCount;
+        public Ship(int totalCount) : base(15, 38, totalCount)
+        {
+            missCount = 0;
+        }
+        public override void CurrentStatus()
+        {
+            base.CurrentStatus();
+            Console.WriteLine($"TotalShipCount: {totalCount}");
+        }
+        public override void CurrentStatus(int missCount)
+        {
+            base.CurrentStatus();
+            Console.WriteLine($"TotalShipCount: {totalCount}, MissCount: {missCount}");
+        }
+    }
 
     /*
     캡슐화
