@@ -9,17 +9,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="BaseBallSoution.cs" />
     <Compile Remove="CEnumStruct.cs" />
     <Compile Remove="CString.cs" />
     <Compile Remove="CStringMethod.cs" />
-    <Compile Remove="Program.cs" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="BaseBallSoution.cs" />
     <None Include="CString.cs" />
     <None Include="CStringMethod.cs" />
     <None Include="CEnumStruct.cs" />
-    <None Include="Program.cs" />
   </ItemGroup>
 
 </Project>
