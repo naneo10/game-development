@@ -1,0 +1,15 @@
+C:\2\w\게임개발 과제\ConsoleApp1\bin\Debug\net8.0\ConsoleApp1.exe
+C:\2\w\게임개발 과제\ConsoleApp1\bin\Debug\net8.0\ConsoleApp1.deps.json
+C:\2\w\게임개발 과제\ConsoleApp1\bin\Debug\net8.0\ConsoleApp1.runtimeconfig.json
+C:\2\w\게임개발 과제\ConsoleApp1\bin\Debug\net8.0\ConsoleApp1.dll
+C:\2\w\게임개발 과제\ConsoleApp1\bin\Debug\net8.0\ConsoleApp1.pdb
+C:\2\w\게임개발 과제\ConsoleApp1\obj\Debug\net8.0\ConsoleApp1.GeneratedMSBuildEditorConfig.editorconfig
+C:\2\w\게임개발 과제\ConsoleApp1\obj\Debug\net8.0\ConsoleApp1.AssemblyInfoInputs.cache
+C:\2\w\게임개발 과제\ConsoleApp1\obj\Debug\net8.0\ConsoleApp1.AssemblyInfo.cs
+C:\2\w\게임개발 과제\ConsoleApp1\obj\Debug\net8.0\ConsoleApp1.csproj.CoreCompileInputs.cache
+C:\2\w\게임개발 과제\ConsoleApp1\obj\Debug\net8.0\ConsoleApp1.sourcelink.json
+C:\2\w\게임개발 과제\ConsoleApp1\obj\Debug\net8.0\ConsoleApp1.dll
+C:\2\w\게임개발 과제\ConsoleApp1\obj\Debug\net8.0\refint\ConsoleApp1.dll
+C:\2\w\게임개발 과제\ConsoleApp1\obj\Debug\net8.0\ConsoleApp1.pdb
+C:\2\w\게임개발 과제\ConsoleApp1\obj\Debug\net8.0\ConsoleApp1.genruntimeconfig.cache
+C:\2\w\게임개발 과제\ConsoleApp1\obj\Debug\net8.0\ref\ConsoleApp1.dll
