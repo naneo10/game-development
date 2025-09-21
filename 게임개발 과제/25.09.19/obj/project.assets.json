@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\2\\w\\게임개발 과제\\ConsoleApp1\\25.09.19.csproj",
+      "projectUniqueName": "C:\\2\\w\\게임개발 과제\\25.09.19\\25.09.19.csproj",
       "projectName": "25.09.19",
-      "projectPath": "C:\\2\\w\\게임개발 과제\\ConsoleApp1\\25.09.19.csproj",
+      "projectPath": "C:\\2\\w\\게임개발 과제\\25.09.19\\25.09.19.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\2\\w\\게임개발 과제\\ConsoleApp1\\obj\\",
+      "outputPath": "C:\\2\\w\\게임개발 과제\\25.09.19\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
