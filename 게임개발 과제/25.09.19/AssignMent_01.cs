@@ -1,24 +1,22 @@
 ﻿
 using System.Net.Http.Headers;
+using System.Reflection.Metadata.Ecma335;
 using System.Runtime.InteropServices;
 using System.Security.AccessControl;
+using System.Threading;
 using System.Xml;
 
 namespace ConsoleApp1
 {
-    /*
-    [텍스트 RPG 평가 과제 (1단계/클래스 생성)
+    #region 과제4: 인터페이스 활용
+    interface IAttackable
+    {
+        int AttackTarget(Player player);
+        int AttackTarget(Monster monster, int num);
 
-    요구사항
-    Player, Monster 클래스를 만든다
-    -속성: 이름, 체력(hp), 공격력(attack)
-    -메서드: AttackTarget(상대), TakeDamage(int), IsDead()
-    1.Nain에서 플레이어와 몬스터를 하나씩 생성한다
-    2.전투는 턴제로 진행한다
-        -플레이어 턴: 입력 받아 공격하거나 대기
-        -몬스터 턴: 자동 공격
-        -HP가 0 이하가 되면 전투를 종료하고 승패를 출력한다
-    */
+        int TakeDamage(int num);
+    }
+    #endregion
 
     //partial class : https://wjunsea.tistory.com/148
     #region 선공/후공 결정
@@ -130,13 +128,16 @@ namespace ConsoleApp1
     }
     #endregion
 
-    #region  플레이어 클레스
-    public class Player
+    #region  과제1, 3: 플레이어 클레스
+    public class Player //: IAttackable
     {
         public string Name { get; set; }
         public int Hp { get; set; }
         public int Attack { get; set; }
         public int Defense { get; set; }
+        public string SkillName { get; set; }
+        public int SkillDamage { get; set; }
+
         public Player(string name, int hp, int attack, int defense)
         {
             Name = name;
@@ -145,9 +146,43 @@ namespace ConsoleApp1
             Defense = defense;
         }
 
-        public int AttackTarget(Monster monster)
+        //스킬
+        public List<Skill> skills = new List<Skill>();
+        public void AddSkill(Skill skill)
         {
-            int playerDamage = Attack - monster.Defense;
+            skills.Add(skill);
+        }
+
+        public List<Skill> SkillList()
+        {
+            Console.Write("보유한 스킬 : ");
+            foreach (Skill skill in skills)
+            {
+                Console.Write("[ ");
+                Console.Write($"{skill.Name}");
+                Console.Write(" ]");
+            }
+            Console.WriteLine();
+            return skills;
+        }
+
+        //공격
+        public int AttackTarget(Monster monster, int num)
+        {
+            int playerDamage = 0;
+            switch (num)
+            {
+                case 1:
+                    {
+                        playerDamage = skills[0].Damage - monster.Defense;
+                    }
+                    break;
+                case 2:
+                    {
+                        playerDamage = skills[1].Damage - monster.Defense;
+                    }
+                    break;
+            }
             return playerDamage;
         }
 
@@ -170,7 +205,7 @@ namespace ConsoleApp1
     }
     #endregion
 
-    #region 몬스터 클래스
+    #region 과제1: 몬스터 클래스
     public class Monster
     {
         public string Name { get; set; }
@@ -209,34 +244,236 @@ namespace ConsoleApp1
     }
     #endregion
 
-    internal class AssignMent_01
+    #region 과제2: enum 플레이어
+    public class PlayerEnum
     {
-        enum SelectNumber
+        public enum AttackType
         {
-            None,
-            Attack,
-            Wait,
-            Etc
+            Attack = 1,
+            Wait = 2,
         }
 
+        public void Action(string inputNumb, Monster monster, Player player)
+        {
+            if (int.TryParse(inputNumb, out int value))
+            {
+                AttackType choice = (AttackType)value;
+                switch (choice)
+                {
+                    case AttackType.Attack:
+                        {
+                            while (true)
+                            {
+                                Console.WriteLine("자세를 가다듬는다. 공격할 스킬을 선택하자!");
+                                player.SkillList();
+                                inputNumb = Console.ReadLine();
+
+                                bool checkNum = int.TryParse(inputNumb, out int numGC);
+
+                                switch (numGC)
+                                {
+                                    case 1:
+                                        {
+                                            Console.WriteLine($"[{player.skills[0].Name}]");
+                                            monster.TakeDamage(player.AttackTarget(monster, numGC));
+                                        }
+                                        break;
+                                    case 2:
+                                        {
+                                            Console.WriteLine($"[{player.skills[1].Name}]");
+                                            monster.TakeDamage(player.AttackTarget(monster, numGC));
+                                        }
+                                        break;
+                                }
+                                if (numGC == 1 || numGC == 2)
+                                {
+                                    break;
+                                }
+                                else
+                                {
+                                    continue;
+                                }
+                            }
+
+                            if (monster.IsDead())
+                            {
+                                Console.WriteLine($"[{monster.Name}]이(가) 치명적인 피해를 입고 쓰러졌다!");
+                                Thread.Sleep(2000);
+                                Console.WriteLine($"[{player.Name}]의 승리!");
+                            }
+                        }
+                        break;
+                    case AttackType.Wait:
+                        {
+                            player.Defense = player.Defense + 5;
+                            Console.WriteLine($"방패를 들고 자세를 낮춘다! " +
+                                $"(현재 방어력: {player.Defense})");
+                        }
+                        break;
+                }
+            }
+        }
+    }
+
+    #endregion
+
+    #region 과제2: enum 몬스터
+    public class MonsterEnum
+    {
+        public enum AttackType
+        {
+            Attack = 1,
+            Wait
+        }
+
+        public void Action(Monster monster, Player player)
+        {
+            Random rad = new Random();
+            int[] monsterSelect = new int[] { 1, 2 };
+
+            for (int i = monsterSelect.Length - 1; i > 0; i--)
+            {
+                int j = rad.Next(i + 1);
+                int temp = monsterSelect[i];
+                monsterSelect[i] = monsterSelect[j];
+                monsterSelect[j] = temp;
+            }
+
+            int value = monsterSelect[0];
+
+            AttackType choice = (AttackType)value;
+            switch (choice)
+            {
+                case AttackType.Attack:
+                    {
+                        Console.WriteLine("가방에서 활을 꺼내든다!");
+                        player.TakeDamage(monster.AttackTarget(player));
+
+                        if (player.IsDead())
+                        {
+                            Console.WriteLine($"[{player.Name}]이(가) 치명상을 입고 쓰러졌다!");
+                            Thread.Sleep(2000);
+                            Console.WriteLine($"[{player.Name}]의 패배");
+                        }
+                    }
+                    break;
+                case AttackType.Wait:
+                    {
+                        monster.Defense = monster.Defense + 5;
+                        Console.WriteLine($"방어자세를 취한다! (현재 방어력: {monster.Defense})");
+                    }
+                    break;
+            }
+        }
+    }
+    #endregion
+
+    #region 과제3: Skill 클래스
+    public class Skill
+    {
+        public string Name { get; set; }
+        public int Damage { get; set; }
+
+        public Skill (string name, int damage)
+        {
+            Name = name;
+            Damage = damage;
+        }
+    }
+    #endregion
+
+    internal class AssignMent_01
+    {
         static void Main ()
         {
-            //환경셋
+            #region 환경셋
+            //셋팅
             Form form = new Form();
             FirstAttack first = new FirstAttack();
             Random rad = new Random();
-            SelectNumber selectNumber;
-
-            //몬스터 선택지
-            int[] monsterSelect = { 1, 2 };
+            PlayerEnum player = new PlayerEnum();
+            MonsterEnum monster = new MonsterEnum();
+            Skill[] skillF = new Skill[3];
 
             //캐릭터, 몬스터 생성
-            Player warrior = new Player("김이병", 300, 50, 5);
+            Player warrior = new Player("김이병", 150, 20, 5);
             Monster kobold = new Monster("코볼트", 120, 30, 0);
 
-            Console.WriteLine($"[{warrior.Name}]이(가) 생성되었습니다.");
+            //스킬 생성
+            skillF[0] = new Skill("일반공격", warrior.Attack * 1);
+            skillF[1] = new Skill("이중공격", warrior.Attack * 2);
+            skillF[2] = new Skill("방패치기", warrior.Attack * 2);
+
+            //시작 구문
+            Console.WriteLine($"[{warrior.Name}]이(가) 여행을 시작합니다!.");
             Console.WriteLine($"《현재 체력 : {warrior.Hp}, 공격력 : {warrior.Attack}, " +
                 $"방어력 : {warrior.Defense}》");
+
+            Thread.Sleep(2000);
+            #endregion
+
+            #region 스킬 선택
+            Console.WriteLine();
+            for (int i = 0; i < 2; i++)
+            {
+                while(true)
+                {
+                    Console.WriteLine("스킬을 2가지 선택하시오!");
+                    foreach ( var skill in skillF)
+                    {
+                        Console.Write("[ ");
+                        Console.Write($"스킬 이름 : {skill.Name}");
+                        Console.Write(" ]");
+                    }
+                    Console.WriteLine();
+
+                    string choiceSkill = Console.ReadLine();
+                    bool confirmNum = int.TryParse(choiceSkill, out int num);
+
+                    //스킬 선택
+                    switch (num)
+                    {
+                        case 1:
+                            {
+                                Console.WriteLine($"[{skillF[0].Name}]을 선택하셨습니다");
+                                Console.WriteLine();
+                                warrior.AddSkill(skillF[0]);
+                            }
+                            break;
+                        case 2:
+                            {
+                                Console.WriteLine($"[{skillF[1].Name}]을 선택하셨습니다");
+                                Console.WriteLine();
+                                warrior.AddSkill(skillF[1]);
+                            }
+                            break;
+                        case 3:
+                            {
+                                Console.WriteLine($"[{skillF[2].Name}]을 선택하셨습니다");
+                                Console.WriteLine();
+                                warrior.AddSkill(skillF[2]);
+                            }
+                            break;
+                    }
+
+                    //조건식
+                    if (num > 0 && num < 4)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("잘못된 선택입니다.");
+                        Console.WriteLine();
+                        continue;
+                    }
+                }
+            }
+            //선택한 스킬 확인
+            warrior.SkillList();
+            Thread.Sleep(3000);
+            #endregion
+
 
             //노드 랜덤 선택 (전투, 비전투 구현)
             switch (form.Delay())
@@ -259,94 +496,57 @@ namespace ConsoleApp1
                             case 0:
                                 {
                                     int count = 0;
+                                    int value = 0;
                                     do
                                     {
                                         count++;
                                         while (true)
                                         {
-                                            #region 플레이어 공격
+                                            //플레이어 공격
                                             Console.WriteLine($"[{count}번째 턴] 1. 공격, 2. 대기(방어)");
-                                            string inputNumb = Console.ReadLine();
-                                            bool comfirmNumb = int.TryParse(inputNumb, out int value);
 
-                                            //문자 입력 시
-                                            if (!comfirmNumb)
+                                            while (true)
                                             {
-                                                Console.WriteLine("당황할 시간이 없다!");
-                                                Console.WriteLine();
-                                                continue;
-                                            }
+                                                string inputNumb = Console.ReadLine();
+                                                bool saveNumb = int.TryParse(inputNumb, out value);
 
-                                            if (value == 1)
-                                            {
-                                                Console.WriteLine("자세를 가다듬는다.");
-                                                kobold.TakeDamage(warrior.AttackTarget(kobold));
-
-                                                if (kobold.IsDead())
+                                                if (!saveNumb)
                                                 {
-                                                    Console.WriteLine($"[{kobold.Name}]이(가) 치명적인 피해를 입고 쓰러졌다!");
-                                                    Thread.Sleep(2000);
-                                                    Console.WriteLine($"[{warrior.Name}]의 승리!");
+                                                    Console.WriteLine("잘못된 판단이다!");
+                                                    continue;
+                                                }
+                                                else if (value == 1 || value == 2)
+                                                {
+                                                    player.Action(inputNumb, kobold, warrior);
                                                     break;
                                                 }
+                                                else
+                                                {
+                                                    Console.WriteLine("잘못된 판단이다!");
+                                                    continue;
+                                                }
                                             }
-                                            else if (value == 2)
-                                            {
-                                                warrior.Defense = warrior.Defense + 5;
-                                                Console.WriteLine($"방패를 들고 자세를 낮춘다! " +
-                                                    $"(방어력 상승: {warrior.Defense})");
-                                            }
-                                            else
-                                            {
-                                                Console.WriteLine("신중하게 선택해야한다!");
-                                                Console.WriteLine();
-                                                continue;
-                                            }
-                                            Console.WriteLine("[플레이어 턴 종료]");
                                             Console.WriteLine();
-                                            #endregion
 
-                                            //방어자세 초기화
-                                            if (monsterSelect[0] == 2)
+                                            if (kobold.Hp <= 0)
+                                            {
+                                                break;
+                                            }
+
+                                            //몬스터 방어자세 초기화
+                                            if (kobold.Defense == 5)
                                             {
                                                 kobold.Defense -= 5;
                                             }
 
-                                            #region  몬스터 공격
                                             //몬스터 공격
-                                            Console.WriteLine($"{kobold.Name}이(가) 빈틈을 노려보고 있다!");
+                                            Console.WriteLine($"[{kobold.Name}]이(가) 빈틈을 노려보고 있다!");
                                             Thread.Sleep(3000);
-                                            for (int i = monsterSelect.Length - 1; i > 0; i--)
-                                            {
-                                                int j = rad.Next(i + 1);
-                                                int temp = monsterSelect[i];
-                                                monsterSelect[i] = monsterSelect[j];
-                                                monsterSelect[j] = temp;
-                                            }
-
-                                            if (monsterSelect[0] == 1)
-                                            {
-                                                Console.WriteLine("가방에서 활을 꺼내든다!");
-                                                warrior.TakeDamage(kobold.AttackTarget(warrior));
-
-                                                if (warrior.IsDead())
-                                                {
-                                                    Console.WriteLine($"[{warrior.Name}]이(가) 치명상을 입고 쓰러졌다!");
-                                                    Thread.Sleep(2000);
-                                                    Console.WriteLine($"[{warrior.Name}]의 패배");
-                                                    break;
-                                                }
-                                            }
-                                            else if (monsterSelect[0] == 2)
-                                            {
-                                                kobold.Defense = kobold.Defense + 5;
-                                                Console.WriteLine($"방어자세를 취한다! (방어력 상승: {kobold.Defense})");
-                                            }
-                                            Console.WriteLine("[몬스터 턴 종료]");
+                                            
+                                            monster.Action(kobold, warrior);
                                             Console.WriteLine();
-                                            #endregion
 
-                                            //방어자세 초기화
+                                            //플레이어 방어자세 초기화
                                             if (value == 2)
                                             {
                                                 warrior.Defense -= 5;
@@ -361,100 +561,60 @@ namespace ConsoleApp1
                             case 1:
                                 {
                                     int count = 0;
+                                    int value = 0;
                                     do
                                     {
                                         count++;
                                         while (true)
                                         {
                                             #region 몬스터 공격
-                                            Console.WriteLine($"{kobold.Name}이(가) 빈틈을 노려보고 있다!");
+                                            Console.WriteLine($"[{kobold.Name}]이(가) 빈틈을 노려보고 있다!");
                                             Thread.Sleep(3000);
-                                            for (int i = monsterSelect.Length - 1; i > 0; i--)
-                                            {
-                                                int j = rad.Next(i + 1);
-                                                int temp = monsterSelect[i];
-                                                monsterSelect[i] = monsterSelect[j];
-                                                monsterSelect[j] = temp;
-                                            }
 
-                                            if (monsterSelect[0] == 1)
-                                            {
-                                                Console.WriteLine("가방에서 활을 꺼내든다!");
-                                                warrior.TakeDamage(kobold.AttackTarget(warrior));
-
-                                                if (warrior.IsDead())
-                                                {
-                                                    Console.WriteLine($"[{warrior.Name}]이(가) 치명상을 입고 쓰러졌다!");
-                                                    Thread.Sleep(2000);
-                                                    Console.WriteLine($"[{warrior.Name}]의 패배");
-                                                    break;
-                                                }
-
-                                            }
-                                            else if (monsterSelect[0] == 2)
-                                            {
-                                                kobold.Defense = kobold.Defense + 5;
-                                                Console.WriteLine($"방어자세를 취한다! (방어력 상승: {kobold.Defense})");
-                                            }
-                                            Console.WriteLine("[몬스터 턴 종료]");
+                                            monster.Action(kobold, warrior);
                                             Console.WriteLine();
                                             #endregion
 
+                                            if (warrior.Hp <= 0)
+                                            {
+                                                break;
+                                            }
+
                                             //방어자세 초기화
-                                            int value = 0;
                                             if (value == 2)
                                             {
                                                 warrior.Defense -= 5;
                                             }
 
                                             #region 플레이어 공격
-                                            while (true)
+                                            Console.WriteLine($"[{count}번째 턴] 1. 공격, 2. 대기(방어)");
+                                            while(true)
                                             {
-                                                Console.WriteLine($"[{count}번째 턴] 1. 공격, 2. 대기(방어)");
                                                 string inputNumb = Console.ReadLine();
-                                                bool comfirmNumb = int.TryParse(inputNumb, out value);
+                                                bool saveNumb = int.TryParse(inputNumb, out value);
 
-                                                //문자 입력 시
-                                                if (!comfirmNumb)
+                                                if (!saveNumb)
                                                 {
-                                                    Console.WriteLine("당황할 시간이 없다!");
-                                                    Console.WriteLine();
+                                                    Console.WriteLine("잘못된 판단이다!");
                                                     continue;
                                                 }
-
-                                                if (value == 1)
+                                                else if (value == 1 || value == 2)
                                                 {
-                                                    Console.WriteLine("자세를 가다듬는다.");
-                                                    kobold.TakeDamage(warrior.AttackTarget(kobold));
-
-                                                    if (kobold.IsDead())
-                                                    {
-                                                        Console.WriteLine($"[{kobold.Name}이(가) 치명상을 입고 쓰러졌다!");
-                                                        Thread.Sleep(2000);
-                                                        Console.WriteLine($"[{warrior.Name}]의 승리!");
-                                                    }
-                                                    break;
-                                                }
-                                                else if (value == 2)
-                                                {
-                                                    warrior.Defense = warrior.Defense + 5;
-                                                    Console.WriteLine($"방패를 들고 자세를 낮춘다! " +
-                                                        $"(방어력 상승: {warrior.Defense})");
+                                                    player.Action(inputNumb, kobold, warrior);
                                                     break;
                                                 }
                                                 else
                                                 {
-                                                    Console.WriteLine("신중하게 선택해야한다!");
-                                                    Console.WriteLine();
+                                                    Console.WriteLine("잘못된 판단이다!");
                                                     continue;
                                                 }
                                             }
-                                            Console.WriteLine("[플레이어 턴 종료]");
+
                                             Console.WriteLine();
                                             #endregion
 
                                             //방어자세 초기화
-                                            if (monsterSelect[0] == 2)
+                                            if (kobold.Defense == 5)
                                             {
                                                 kobold.Defense -= 5;
                                             }
@@ -468,10 +628,6 @@ namespace ConsoleApp1
                     }
                     break;
             }//switch //노드 랜덤 선택 (전투, 비전투 구현)
-
         }
-
-        
-
     }
 }

@@ -105,6 +105,7 @@ namespace _20250912_day07
             {
                 case Direction.Up:
                     //캐릭터가 위로 이동
+                    Console.WriteLine("캐릭터가 위로 이동");
                     break;
                 case Direction.Down:
                     break;
