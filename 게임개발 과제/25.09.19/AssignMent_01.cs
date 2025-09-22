@@ -314,7 +314,6 @@ namespace ConsoleApp1
             }
         }
     }
-
     #endregion
 
     #region 과제2: enum 몬스터
